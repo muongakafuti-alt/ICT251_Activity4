@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Timetable and Goals</title>
+
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          max-width: 1100px;
+          margin: 30px auto;
+          padding: 0 16px;
+          background: #f4f6f8;
+          color: #222;
+        }
+
+        h1, h2 {
+          color: #183153;
+        }
+
+        form, .table-container {
+          background: white;
+          padding: 20px;
+          border-radius: 8px;
+          margin-bottom: 24px;
+        }
+
+        label {
+          display: block;
+          margin-top: 12px;
+          font-weight: bold;
+        }
+
+        input, select, button {
+          box-sizing: border-box;
+          padding: 10px;
+          margin-top: 5px;
+          font: inherit;
+        }
+
+        input, select {
+          width: 100%;
+        }
+
+        button {
+          cursor: pointer;
+          border: 0;
+          border-radius: 4px;
+          background: #183153;
+          color: white;
+          margin-right: 5px;
+        }
+
+        button:hover {
+          opacity: 0.85;
+        }
+
+        .cancel-button {
+          background: #555;
+        }
+
+        .table-container {
+          overflow-x: auto;
+        }
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          background: white;
+        }
+
+        th, td {
+          border: 1px solid #ddd;
+          padding: 10px;
+          text-align: left;
+        }
+
+        th {
+          background: #e6edf5;
+        }
+
+        #message {
+          font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+<h1>Student Timetable and Goals</h1>
+<p>Add your classes, view your timetable, edit entries and delete entries.</p>
+
+<p id="message" role="status"></p>
+
+<form id="timetableForm">
+    <h2 id="formTitle">Add a Timetable Entry</h2>
+
+    <input type="hidden" id="recordId">
+
+    <label for="course_code">Course Code</label>
+    <input id="course_code" name="course_code" required maxlength="20">
+
+    <label for="course_name">Course Name</label>
+    <input id="course_name" name="course_name" required maxlength="150">
+
+    <label for="day">Day</label>
+    <select id="day" name="day" required>
+        <option value="">Select a day</option>
+        <option>Monday</option>
+        <option>Tuesday</option>
+        <option>Wednesday</option>
+        <option>Thursday</option>
+        <option>Friday</option>
+        <option>Saturday</option>
+        <option>Sunday</option>
+    </select>
+
+    <label for="start_time">Start Time</label>
+    <input id="start_time" name="start_time" type="time" required>
+
+    <label for="end_time">End Time</label>
+    <input id="end_time" name="end_time" type="time" required>
+
+    <label for="classroom">Classroom</label>
+    <input id="classroom" name="classroom" required maxlength="100">
+
+    <p>
+        <button type="submit" id="saveButton">Save Entry</button>
+        <button type="button" id="cancelButton" class="cancel-button" hidden>
+            Cancel Edit
+        </button>
+    </p>
+</form>
+
+<section class="table-container">
+    <h2>Existing Timetable Entries</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Course Code</th>
+            <th>Course Name</th>
+            <th>Day</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Classroom</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody id="timetableBody"></tbody>
+    </table>
+</section>
+
+<script src="app.js"></script>
+</body>
+</html>
+
+
